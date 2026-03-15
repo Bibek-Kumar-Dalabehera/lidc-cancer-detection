@@ -31,3 +31,27 @@ Deep Learning model to classify lung nodules as **Benign** or **Malignant** usin
 
 ## 🚀 How to Run
 ```bash
+git clone https://github.com/YOUR_USERNAME/lidc-cancer-detection.git
+cd lidc-cancer-detection
+pip install -r requirements.txt
+jupyter notebook
+```
+
+---
+
+## 📈 Results
+
+| Metric | Score |
+|---|---|
+| Train Accuracy | ~85% |
+| Val Accuracy | ~81% |
+
+---
+
+## 📁 Project Structure
+```
+lidc-cancer-detection/
+├── LIDC-pytorch.ipynb   ← main notebook
+├── README.md
+└── .gitignore
+```
