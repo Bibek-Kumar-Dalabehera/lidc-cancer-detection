@@ -43,8 +43,8 @@ jupyter notebook
 
 | Metric | Score |
 |---|---|
-| Train Accuracy | ~85% |
-| Val Accuracy | ~81% |
+| Train Accuracy | ~98% |
+| Val Accuracy | ~95% |
 
 ---
 
