@@ -1,2 +1,6 @@
-LIDC-IDRI-slices/
-LIDC-IDRI-slices.zip
+data/
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+*.pkl
+*.h5
