@@ -50,8 +50,40 @@ jupyter notebook
 
 ## 📁 Project Structure
 ```
-lidc-cancer-detection/
-├── LIDC-pytorch.ipynb   ← main notebook
-├── README.md
-└── .gitignore
+LIDC-cancer-detection/
+│
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── config.py
+│   ├── database.py            # Database connection & session management
+│   ├── models/                # ML model (unchanged)
+│   │   ├── __init__.py
+│   │   ├── model.py
+│   │   └── preprocess.py
+│   ├── routes/
+│   │   ├── __init__.py
+│   │   ├── auth.py            # signup, login, logout, token refresh
+│   │   ├── predict.py         # prediction endpoint (requires auth)
+│   │   └── history.py         # fetch user prediction history
+│   ├── schemas/               # Pydantic models for request/response
+│   │   ├── __init__.py
+│   │   ├── user.py            # UserCreate, UserLogin, UserOut, Token
+│   │   └── prediction.py      # PredictionResponse, PredictionHistory
+│   ├── db_models/             # SQLAlchemy ORM models
+│   │   ├── __init__.py
+│   │   └── models.py          # User, Prediction tables
+│   ├── static/
+│   │   ├── style.css
+│   │   └── script.js
+│   └── templates/
+│       ├── index.html         # prediction page (logged‑in view)
+│       ├── login.html
+│       └── signup.html
+│
+├── models/                    # trained .pth file
+├── data/                      # image data
+├── notebook/                  # jupyter model trained file
+├── requirements.txt
+└── README.md
 ```
