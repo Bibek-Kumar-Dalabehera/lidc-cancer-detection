@@ -1,4 +1,4 @@
-# 🫁 LIDC Cancer Detection
+# 🫁 Lungs Cancer Detection
 
 Deep Learning model to classify lung nodules as **Benign** or **Malignant** using CT scan patches from the LIDC-IDRI dataset.
 
