@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lung Cancer Detection - Early Detection, Better Outcomes</title>
     <link rel="stylesheet" href="/static/style.css">
     <style>
+        .home-page {
+            background:
+                linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)),
+                url('https://images.emedicinehealth.com/images/article/main_image/lung-cancer.jpg?output-quality=75') center / cover fixed no-repeat;
+        }
+
+        .home-page nav {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.45) 0%, rgba(30, 64, 175, 0.45) 100%);
+            backdrop-filter: blur(10px);
+        }
+
+        .home-page .hero {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.35) 0%, rgba(15, 118, 110, 0.25) 100%);
+            backdrop-filter: blur(3px);
+        }
+
         .hero-content {
             animation: fadeInDown 0.6s ease-out;
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
         }
 
         @keyframes fadeInDown {
@@ -15,6 +33,7 @@
                 opacity: 0;
                 transform: translateY(-30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -26,15 +45,24 @@
             animation-fill-mode: both;
         }
 
-        .feature-card:nth-child(1) { animation-delay: 0.1s; }
-        .feature-card:nth-child(2) { animation-delay: 0.2s; }
-        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .feature-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .feature-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -42,10 +70,11 @@
         }
 
         .stats-section {
-            background: linear-gradient(120deg, #1e3a8a 0%, #0f766e 48%, #6d28d9 100%);
+            background: linear-gradient(120deg, rgba(30, 58, 138, 0.3) 0%, rgba(15, 118, 110, 0.22) 48%, rgba(109, 40, 217, 0.28) 100%);
             color: white;
             padding: 3.5rem 2rem;
             margin: 0;
+            backdrop-filter: blur(6px);
         }
 
         .stats-grid {
@@ -71,37 +100,70 @@
         }
 
         .stat-item:nth-child(1) {
-            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.5) 0%, rgba(59, 130, 246, 0.4) 100%);
+            backdrop-filter: blur(8px);
         }
 
         .stat-item:nth-child(2) {
-            background: linear-gradient(135deg, #0891b2 0%, #14b8a6 100%);
+            background: linear-gradient(135deg, rgba(8, 145, 178, 0.48) 0%, rgba(20, 184, 166, 0.4) 100%);
+            backdrop-filter: blur(8px);
         }
 
         .stat-item:nth-child(3) {
-            background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.46) 0%, rgba(239, 68, 68, 0.38) 100%);
+            backdrop-filter: blur(8px);
         }
 
         .stat-item h3 {
             font-size: 2.5rem;
             margin-bottom: 0.4rem;
             letter-spacing: 0.5px;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .stat-item p {
             font-size: 1.1rem;
             opacity: 0.95;
+            color: rgba(255, 255, 255, 0.95);
         }
 
-        .info-section {
+        .home-page .features {
             padding: 4rem 2rem;
-            background: white;
+            background: linear-gradient(135deg, rgba(248, 250, 252, 0.35) 0%, rgba(241, 245, 249, 0.3) 100%);
+            backdrop-filter: blur(4px);
+            color: #fff;
+        }
+
+        .home-page .features h2 {
+            color: #ffffff !important;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .home-page .features > .container > p {
+            color: rgba(255, 255, 255, 0.9) !important;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .home-page .feature-card {
+            background: rgba(255, 255, 255, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .home-page .feature-card h3 {
+            color: #1e293b;
+        }
+
+        .home-page .feature-card p {
+            color: #475569;
         }
 
         .info-section {
             padding: 5rem 2rem !important;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%),
-                        url('https://images.emedicinehealth.com/images/article/main_image/lung-cancer.jpg?output-quality=75') !important;
+            background: linear-gradient(135deg, rgba(248, 250, 252, 0.88) 0%, rgba(248, 250, 252, 0.74) 100%),
+                url('https://images.emedicinehealth.com/images/article/main_image/lung-cancer.jpg?output-quality=75') !important;
             background-size: cover !important;
             background-position: left center !important;
             background-attachment: fixed !important;
@@ -116,7 +178,7 @@
             top: 0;
             bottom: 0;
             width: 40%;
-            background: rgba(102, 126, 234, 0.06);
+            background: rgba(102, 126, 234, 0.8);
             z-index: 0;
         }
 
@@ -171,7 +233,7 @@
         }
 
         .info-list li::before {
-            content: '✓';
+            content: '\2713';
             color: var(--success-color);
             font-weight: bold;
             margin-right: 1rem;
@@ -181,24 +243,42 @@
         }
 
         .cta-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.35) 0%, rgba(118, 75, 162, 0.3) 100%);
             color: white;
             padding: 4rem 2rem;
             text-align: center;
+            backdrop-filter: blur(6px);
+        }
+
+        .home-page footer {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.55) 0%, rgba(10, 15, 30, 0.6) 100%);
+            backdrop-filter: blur(8px);
         }
 
         .cta-section h2 {
             font-size: 2rem;
             margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
         }
 
         .cta-section p {
             font-size: 1.1rem;
             margin-bottom: 2rem;
             opacity: 0.95;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
         }
 
         @media (max-width: 768px) {
+            .home-page {
+                background-attachment: scroll;
+            }
+
+            .info-section {
+                background-attachment: scroll !important;
+            }
+
             .stats-grid {
                 grid-template-columns: 1fr;
             }
@@ -217,7 +297,8 @@
         }
     </style>
 </head>
-<body>
+
+<body class="home-page">
     <!-- Navigation -->
     <nav>
         <div class="navbar-container">
@@ -249,11 +330,11 @@
     <div class="stats-section">
         <div class="stats-grid">
             <div class="stat-item">
-                <h3>95%</h3>
+                <h3>98%</h3>
                 <p>Detection Accuracy</p>
             </div>
             <div class="stat-item">
-                <h3>500+</h3>
+                <h3>1200+</h3>
                 <p>Medical Experts</p>
             </div>
             <div class="stat-item">
@@ -267,14 +348,15 @@
     <section class="features" id="features">
         <div class="container">
             <h2 class="text-center" style="font-size: 2.2rem; margin-bottom: 1rem;">Why Choose LungDetect AI?</h2>
-            <p class="text-center" style="color: var(--text-light); margin-bottom: 2rem;">
+            <p class="text-center" style="margin-bottom: 2rem;">
                 Our advanced AI system provides accurate and reliable lung cancer detection
             </p>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🧠</div>
                     <h3>Advanced AI Model</h3>
-                    <p>Deep learning model trained on 15,000+ medical images from LIDC-IDRI dataset with 95% accuracy</p>
+                    <p>Deep learning model trained on 15,000+ medical images from LIDC-IDRI dataset with 95% accuracy
+                    </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
@@ -295,7 +377,8 @@
         <div class="container info-content-wrapper">
             <div class="info-content">
                 <h2>How It Works</h2>
-                <p>LungDetect AI uses a ResNet18 deep learning model that analyzes CT scan images to detect lung cancer at early stages when treatment is most effective.</p>
+                <p>LungDetect AI uses a ResNet18 deep learning model that analyzes CT scan images to detect lung cancer
+                    at early stages when treatment is most effective.</p>
                 <p class="system-label">Our system:</p>
                 <ul class="info-list">
                     <li>Analyzes CT scan images using state-of-the-art AI</li>
@@ -331,4 +414,5 @@
         </div>
     </footer>
 </body>
+
 </html>
