@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lung Cancer Detection - Early Detection, Better Outcomes</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .hero-content {
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card {
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stats-section {
+            background: linear-gradient(120deg, #1e3a8a 0%, #0f766e 48%, #6d28d9 100%);
+            color: white;
+            padding: 3.5rem 2rem;
+            margin: 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            border-radius: 16px;
+            padding: 2rem 1.25rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.24);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 35px rgba(15, 23, 42, 0.35);
+        }
+
+        .stat-item:nth-child(1) {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+        }
+
+        .stat-item:nth-child(2) {
+            background: linear-gradient(135deg, #0891b2 0%, #14b8a6 100%);
+        }
+
+        .stat-item:nth-child(3) {
+            background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .info-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .info-section {
+            padding: 5rem 2rem !important;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%),
+                        url('https://images.emedicinehealth.com/images/article/main_image/lung-cancer.jpg?output-quality=75') !important;
+            background-size: cover !important;
+            background-position: left center !important;
+            background-attachment: fixed !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-section::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 40%;
+            background: rgba(102, 126, 234, 0.06);
+            z-index: 0;
+        }
+
+        .info-content-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto !important;
+        }
+
+        .info-content {
+            margin-left: auto;
+            max-width: 600px;
+        }
+
+        .info-content h2 {
+            font-size: 2.6rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            font-weight: 800;
+            letter-spacing: -0.8px;
+        }
+
+        .info-content p {
+            color: var(--text-light);
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        .system-label {
+            font-weight: 750 !important;
+            color: var(--text-dark) !important;
+            margin-top: 1.5rem !important;
+            margin-bottom: 1.2rem !important;
+            font-size: 1.1rem !important;
+        }
+
+        .info-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .info-list li {
+            padding: 0.9rem 0;
+            color: var(--text-dark);
+            display: flex;
+            align-items: flex-start;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        .info-list li::before {
+            content: '✓';
+            color: var(--success-color);
+            font-weight: bold;
+            margin-right: 1rem;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .stat-item h3 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="navbar-container">
+            <a href="/" class="navbar-logo">
+                LungDetect AI
+            </a>
+            <div class="navbar-menu">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="/login" class="nav-btn">Login</a>
+                <a href="/signup" class="nav-btn nav-btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Lung Cancer Detection</h1>
+            <p>AI-Powered Early Detection System Using Advanced Deep Learning</p>
+            <div class="hero-buttons">
+                <a href="/signup" class="btn btn-primary btn-large">Start Free Trial</a>
+                <a href="#features" class="btn btn-secondary btn-large">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>95%</h3>
+                <p>Detection Accuracy</p>
+            </div>
+            <div class="stat-item">
+                <h3>500+</h3>
+                <p>Medical Experts</p>
+            </div>
+            <div class="stat-item">
+                <h3>10K+</h3>
+                <p>Cases Analyzed</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="text-center" style="font-size: 2.2rem; margin-bottom: 1rem;">Why Choose LungDetect AI?</h2>
+            <p class="text-center" style="color: var(--text-light); margin-bottom: 2rem;">
+                Our advanced AI system provides accurate and reliable lung cancer detection
+            </p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Advanced AI Model</h3>
+                    <p>Deep learning model trained on 15,000+ medical images from LIDC-IDRI dataset with 95% accuracy</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Results</h3>
+                    <p>Get analysis results in seconds with real-time confidence scores and detailed reports</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure & Private</h3>
+                    <p>Enterprise-grade security with end-to-end encryption for all patient data</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section" id="about">
+        <div class="container info-content-wrapper">
+            <div class="info-content">
+                <h2>How It Works</h2>
+                <p>LungDetect AI uses a ResNet18 deep learning model that analyzes CT scan images to detect lung cancer at early stages when treatment is most effective.</p>
+                <p class="system-label">Our system:</p>
+                <ul class="info-list">
+                    <li>Analyzes CT scan images using state-of-the-art AI</li>
+                    <li>Classifies nodules as benign or malignant</li>
+                    <li>Provides confidence scores for each prediction</li>
+                    <li>Generates detailed medical reports</li>
+                    <li>Integrates with existing medical workflows</li>
+                </ul>
+                <a href="/signup" class="btn btn-primary mt-4">Start Your Analysis</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Join thousands of medical professionals using LungDetect AI for accurate cancer detection</p>
+            <a href="/signup" class="btn btn-primary btn-large">Create Free Account</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Documentation</a>
+            </div>
+            <p>&copy; 2026 LungDetect AI. All rights reserved. | Powered by Advanced Deep Learning</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,543 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Lung Cancer Detection System</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .signup-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+        }
+
+        .auth-container {
+            animation: slideUp 0.5s ease-out;
+            max-width: 500px;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .signup-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .signup-header span {
+            font-size: 2rem;
+        }
+
+        .password-strength {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            display: none;
+        }
+
+        .password-strength.show {
+            display: block;
+        }
+
+        .password-strength.weak {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .password-strength.medium {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .password-strength.strong {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 38px;
+            cursor: pointer;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            border: none;
+            background: none;
+            transition: color 0.3s ease;
+        }
+
+        .password-toggle:hover {
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-row .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .phone-input-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .phone-input-group .country-code {
+            max-width: 200px;
+            white-space: nowrap;
+            font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', 'Segoe UI', sans-serif;
+        }
+
+        .phone-input-group .country-code option {
+            font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', 'Segoe UI', sans-serif;
+        }
+
+        .phone-input-group input[type="tel"] {
+            flex: 1;
+        }
+
+        .terms-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .terms-group input[type="checkbox"] {
+            width: auto;
+            margin-top: 0.25rem;
+            cursor: pointer;
+        }
+
+        .terms-group label {
+            margin: 0;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-weight: normal;
+            color: var(--text-light);
+        }
+
+        .terms-group a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .terms-group a:hover {
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .login-prompt {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .login-prompt a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .login-prompt a:hover {
+            color: var(--secondary-color);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .alert.error {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid #ef4444;
+        }
+
+        .alert.success {
+            background-color: #dcfce7;
+            color: #166534;
+            border-left: 4px solid #10b981;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .social-login {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-btn {
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: var(--text-dark);
+        }
+
+        .social-btn:hover {
+            border-color: var(--primary-color);
+            background: var(--light-bg);
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .phone-input-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .phone-input-group .country-code {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .signup-wrapper {
+                padding: 1rem;
+            }
+
+            .auth-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-wrapper">
+        <div class="auth-container">
+            <div class="auth-header">
+                <div class="signup-header">
+                    <h2>LungDetect AI</h2>
+                </div>
+                <p>Create your account</p>
+            </div>
+
+            <!-- Alert Messages -->
+            <div id="alert" class="alert"></div>
+
+            <!-- Signup Form -->
+            <form id="signupForm" onsubmit="handleSignup(event)">
+                <!-- Name Fields -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input 
+                            type="text" 
+                            id="firstName" 
+                            name="firstName" 
+                            placeholder="John"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input 
+                            type="text" 
+                            id="lastName" 
+                            name="lastName" 
+                            placeholder="Doe"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="you@example.com"
+                        required
+                    >
+                </div>
+
+                <!-- Phone Field -->
+                <div class="form-group">
+                    <label for="phone">Phone Number (Optional)</label>
+                    <div class="phone-input-group">
+                        <select id="countryCode" name="countryCode" class="country-code">
+                            <option value="+91">&#127470;&#127475; India (+91)</option>
+                            <option value="+1">&#127482;&#127480; USA (+1)</option>
+                            <option value="+44">&#127468;&#127463; UK (+44)</option>
+                            <option value="+61">&#127462;&#127482; Australia (+61)</option>
+                            <option value="+81">&#127471;&#127477; Japan (+81)</option>
+                        </select>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Enter phone number"
+                        >
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Enter password"
+                        required
+                        onchange="checkPasswordStrength()"
+                    >
+                    <button type="button" class="password-toggle" onclick="togglePassword('password', this)" aria-label="Show password">
+                        &#128065;
+                    </button>
+                    <div id="passwordStrength" class="password-strength"></div>
+                </div>
+
+                <!-- Confirm Password Field -->
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        name="confirmPassword" 
+                        placeholder="Enter password"
+                        required
+                    >
+                    <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword', this)" aria-label="Show password">
+                        &#128065;
+                    </button>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="terms-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">
+                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <!-- Marketing Opt-in -->
+                <div class="terms-group">
+                    <input type="checkbox" id="marketing" name="marketing">
+                    <label for="marketing">
+                        I want to receive updates and news about LungDetect AI
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn">Create Account</button>
+            </form>
+
+            <!-- Divider -->
+            <div class="form-divider">
+                <span>Or sign up with</span>
+            </div>
+
+            <!-- Social Login -->
+            <div class="social-login">
+                <button type="button" class="social-btn" onclick="socialSignup('google')">
+                    Google
+                </button>
+                <button type="button" class="social-btn" onclick="socialSignup('microsoft')">
+                    Microsoft
+                </button>
+            </div>
+
+            <!-- Login Link -->
+            <div class="login-prompt">
+                Already have an account? <a href="/login">Sign in here</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(fieldId, button) {
+            const input = document.getElementById(fieldId);
+            const eyeIcon = String.fromCodePoint(0x1F441);
+            const hideIcon = String.fromCodePoint(0x1F648);
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                button.textContent = hideIcon;
+                button.setAttribute('aria-label', 'Hide password');
+            } else {
+                input.type = 'password';
+                button.textContent = eyeIcon;
+                button.setAttribute('aria-label', 'Show password');
+            }
+        }
+
+        function checkPasswordStrength() {
+            const password = document.getElementById('password').value;
+            const strengthDiv = document.getElementById('passwordStrength');
+            
+            if (!password) {
+                strengthDiv.classList.remove('show');
+                return;
+            }
+
+            let strength = 'weak';
+            let message = 'Weak password';
+
+            // Check password criteria
+            const hasLower = /[a-z]/.test(password);
+            const hasUpper = /[A-Z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+            const hasSpecial = /[!@#$%^&*]/.test(password);
+            const isLongEnough = password.length >= 8;
+
+            const criteriaCount = [hasLower, hasUpper, hasNumber, hasSpecial, isLongEnough]
+                .filter(Boolean).length;
+
+            if (criteriaCount <= 2) {
+                strength = 'weak';
+                message = 'Weak password';
+            } else if (criteriaCount === 3 || criteriaCount === 4) {
+                strength = 'medium';
+                message = 'Medium password';
+            } else {
+                strength = 'strong';
+                message = 'Strong password';
+            }
+
+            strengthDiv.className = `password-strength ${strength} show`;
+            strengthDiv.textContent = message;
+        }
+
+        function showAlert(message, type = 'error') {
+            const alert = document.getElementById('alert');
+            alert.textContent = message;
+            alert.className = `alert ${type} show`;
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                alert.classList.remove('show');
+            }, 5000);
+        }
+
+        async function handleSignup(event) {
+            event.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const countryCode = document.getElementById('countryCode').value;
+            const phone = document.getElementById('phone').value.trim();
+            const fullPhone = phone ? `${countryCode}${phone}` : "";
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const terms = document.getElementById('terms').checked;
+
+            // Validation
+            if (!firstName || !lastName || !email || !password || !confirmPassword) {
+                showAlert('Please fill in all required fields', 'error');
+                return;
+            }
+
+            // Email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                showAlert('Please enter a valid email address', 'error');
+                return;
+            }
+
+            // Password validation
+            if (password.length < 8) {
+                showAlert('Password must be at least 8 characters long', 'error');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showAlert('Passwords do not match', 'error');
+                return;
+            }
+
+            if (!terms) {
+                showAlert('You must agree to the Terms of Service', 'error');
+                return;
+            }
+
+            try {
+                // Simulate account creation (replace with actual API call later)
+                console.log(fullPhone);
+                showAlert('Account created successfully! Redirecting...', 'success');
+                
+                // Redirect to login after 1.5 seconds
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 1500);
+            } catch (error) {
+                showAlert('Signup failed. Please try again.', 'error');
+            }
+        }
+
+        function socialSignup(provider) {
+            showAlert(`${provider.toUpperCase()} signup coming soon!`, 'error');
+            // TODO: Implement social signup
+        }
+    </script>
+</body>
+</html>
+
